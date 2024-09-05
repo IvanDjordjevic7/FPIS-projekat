@@ -1,0 +1,51 @@
+<div class="home-container">
+    
+    <h1 class="title">ART-EXPO-2024</h1>
+    
+    <!-- Dodaj padajući meni ispod naslova -->
+    <select class="form-control" (change)="onManifestacijaChange($event)">
+      <option value="" disabled selected>Izaberite manifestaciju</option>
+      <option *ngFor="let manifestacija of manifestacije" [value]="manifestacija.id">
+        {{ manifestacija.naziv }}
+      </option>
+    </select>
+  
+    <button (click)="showPregled()" class="btn">Pregled</button>
+    <button (click)="showPrijave()" class="btn">Prijave</button>
+  
+    
+    <app-prijave *ngIf="prijaveVisible"></app-prijave>
+
+     <!-- Prikaz detalja manifestacije -->
+    <div *ngIf="pregledVisible && selectedManifestacija">
+      <h2>Detalji Manifestacije: {{ selectedManifestacija.naziv }}</h2>
+      <p>Grad: {{ selectedManifestacija.grad }}</p>
+      <p>Lokacija: {{ selectedManifestacija.lokacija }}</p>
+      <p>Cena Slikarstvo: {{ selectedManifestacija.cenaSlikarstvo }}</p>
+      <p>Cena Fotografija: {{ selectedManifestacija.cenaFotografija }}</p>
+      <p>10% popusta do: {{ selectedManifestacija.datumUmanjenja | date:'dd.MM.yyyy'}}</p>
+
+      <div class="izlozbe-container">
+        <div *ngFor="let izlozba of izlozbe" class="izlozba-card">
+          <h3>Izložba: {{ izlozba.tip }}</h3>
+          <p>Datum: {{ izlozba.datum | date:'dd.MM.yyyy' }}</p>
+          <p>Vreme Otvaranja: {{ izlozba.vremeOtvaranja }}</p>
+          <p>Vreme Zatvaranja: {{ izlozba.vremeZatvaranja }}</p>
+          <p>Maksimalan broj prisutnih: {{ izlozba.maksBrojPrisutnih }}</p>
+          <p>Slobodna Mesta: {{ slobodnaMestaMap[izlozba.id] }}</p>
+          <h4>Umetnici:</h4>
+          <ul>
+            <li *ngFor="let umetnik of umetniciMap[izlozba.id]">
+              {{ umetnik.ime }} {{ umetnik.prezime }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+  
+  

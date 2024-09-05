@@ -1,0 +1,243 @@
+<div>
+    <button (click)="onCreatePrijava()">Kreiraj Prijavu</button>
+    <button (click)="onUpdatePrijava()">Izmeni Prijavu</button>
+    <button (click)="onCancelPrijava()">Otkazi Prijavu</button>
+  </div>
+  
+  <div *ngIf="showForm === 'create'">
+    <h2>Kreiraj Novu Prijavu</h2>
+    <form [formGroup]="prijavaForm" (ngSubmit)="createPrijava()">
+      <!-- Ime -->
+    <div class="form-group">
+      <label for="ime">Ime</label>
+      <input
+        type="text"
+        id="ime"
+        class="form-control"
+        formControlName="ime"
+        placeholder="Unesite ime"
+      />
+      <div *ngIf="prijavaForm.get('ime')?.invalid && prijavaForm.get('ime')?.touched" class="text-danger">
+        Ime je obavezno.
+      </div>
+    </div>
+    
+    <!-- Prezime -->
+    <div class="form-group">
+      <label for="prezime">Prezime</label>
+      <input
+        type="text"
+        id="prezime"
+        class="form-control"
+        formControlName="prezime"
+        placeholder="Unesite prezime"
+      />
+      <div *ngIf="prijavaForm.get('prezime')?.invalid && prijavaForm.get('prezime')?.touched" class="text-danger">
+        Prezime je obavezno.
+      </div>
+    </div>
+
+    <!-- Profesija -->
+    <div class="form-group">
+      <label for="profesija">Profesija</label>
+      <input
+        type="text"
+        id="profesija"
+        class="form-control"
+        formControlName="profesija"
+        placeholder="Unesite profesiju"
+      />
+    </div>
+
+    <!-- Adresa 1 -->
+    <div class="form-group">
+      <label for="adresa1">Adresa 1</label>
+      <input
+        type="text"
+        id="adresa1"
+        class="form-control"
+        formControlName="adresa1"
+        placeholder="Unesite adresu"
+      />
+      <div *ngIf="prijavaForm.get('adresa1')?.invalid && prijavaForm.get('adresa1')?.touched" class="text-danger">
+        Adresa 1 je obavezna.
+      </div>
+    </div>
+
+    <!-- Adresa 2 -->
+    <div class="form-group">
+      <label for="adresa2">Adresa 2</label>
+      <input
+        type="text"
+        id="adresa2"
+        class="form-control"
+        formControlName="adresa2"
+        placeholder="Unesite dodatnu adresu"
+      />
+    </div>
+
+    <!-- Poštanski broj -->
+    <div class="form-group">
+      <label for="postanskiBroj">Poštanski Broj</label>
+      <input
+        type="text"
+        id="postanskiBroj"
+        class="form-control"
+        formControlName="postanskiBroj"
+        placeholder="Unesite poštanski broj"
+      />
+      <div *ngIf="prijavaForm.get('postanskiBroj')?.invalid && prijavaForm.get('postanskiBroj')?.touched" class="text-danger">
+        Poštanski broj je obavezan.
+      </div>
+    </div>
+
+    <!-- Mesto -->
+    <div class="form-group">
+      <label for="mesto">Mesto</label>
+      <input
+        type="text"
+        id="mesto"
+        class="form-control"
+        formControlName="mesto"
+        placeholder="Unesite mesto"
+      />
+      <div *ngIf="prijavaForm.get('mesto')?.invalid && prijavaForm.get('mesto')?.touched" class="text-danger">
+        Mesto je obavezno.
+      </div>
+    </div>
+
+    <!-- Država -->
+    <div class="form-group">
+      <label for="drzava">Država</label>
+      <input
+        type="text"
+        id="drzava"
+        class="form-control"
+        formControlName="drzava"
+        placeholder="Unesite državu"
+      />
+      <div *ngIf="prijavaForm.get('drzava')?.invalid && prijavaForm.get('drzava')?.touched" class="text-danger">
+        Država je obavezna.
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Unesite email"
+      />
+      <div *ngIf="prijavaForm.get('email')?.invalid && prijavaForm.get('email')?.touched" class="text-danger">
+        Email je obavezan i mora biti validan.
+      </div>
+    </div>
+
+    <!-- Potvrda Email -->
+    <div class="form-group">
+      <label for="potvrdaEmail">Potvrda Email</label>
+      <input
+        type="email"
+        id="potvrdaEmail"
+        class="form-control"
+        formControlName="potvrdaEmail"
+        placeholder="Potvrdite email"
+      />
+      <div *ngIf="prijavaForm.get('potvrdaEmail')?.invalid && prijavaForm.get('potvrdaEmail')?.touched" class="text-danger">
+        Potvrda emaila je obavezna i mora biti validna.
+      </div>
+    </div>
+
+    <!-- Broj Osoba -->
+    <div class="form-group">
+      <label for="brojOsoba">Broj Osoba</label>
+      <input
+        type="number"
+        id="brojOsoba"
+        class="form-control"
+        formControlName="brojOsoba"
+        placeholder="Unesite broj osoba"
+      />
+      <div *ngIf="prijavaForm.get('brojOsoba')?.invalid && prijavaForm.get('brojOsoba')?.touched" class="text-danger">
+        Broj osoba je obavezan.
+      </div>
+    </div>
+
+    <!-- Manifestacija -->
+    <div class="form-group">
+      <label for="manifestacijaId">Manifestacija</label>
+      <select id="manifestacijaId" class="form-control" formControlName="manifestacijaId">
+        <option *ngFor="let manifestacija of manifestacije" [value]="manifestacija.id">
+          {{ manifestacija.naziv }}
+        </option>
+      </select>
+      <div *ngIf="prijavaForm.get('manifestacijaId')?.invalid && prijavaForm.get('manifestacijaId')?.touched" class="text-danger">
+        Izbor manifestacije je obavezan.
+      </div>
+    </div>
+
+    <!-- Tip Prijave -->
+    <div class="form-group">
+      <label for="tipPrijave">Tip Prijave</label>
+      <select id="tipPrijave" class="form-control" formControlName="tipPrijave">
+        <option value="Slikarstvo">Slikarstvo</option>
+        <option value="Fotografija">Fotografija</option>
+        <option value="Oba dana">Oba dana</option>
+      </select>
+      <div *ngIf="prijavaForm.get('tipPrijave')?.invalid && prijavaForm.get('tipPrijave')?.touched" class="text-danger">
+        Tip prijave je obavezan.
+      </div>
+    </div>
+
+    <!-- Promo Kod -->
+    <div class="form-group">
+      <label for="promoKodUnos">Promo Kod</label>
+      <input
+        type="text"
+        id="promoKodUnos"
+        class="form-control"
+        formControlName="promoKodUnos"
+        placeholder="Unesite promo kod"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="prijavaForm.invalid">Potvrdi</button>
+
+    </form>
+  </div>
+  
+  <div *ngIf="showForm === 'update'">
+    <form (ngSubmit)="updatePrijava()">
+      <label for="emailUpdate">Email:</label>
+      <input id="emailUpdate" [(ngModel)]="email" name="emailUpdate" required />
+  
+      <label for="tokenUpdate">Token:</label>
+      <input id="tokenUpdate" [(ngModel)]="token" name="tokenUpdate" required />
+  
+      <label for="novaTipPrijave">Tip prijave:</label>
+      <select id="novaTipPrijave" [(ngModel)]="updatedPrijava.tipPrijave" name="novaTipPrijave" required>
+          <option *ngFor="let tip of tipoviPrijave" [value]="tip">{{ tip }}</option>
+      </select>
+  
+      <label for="brojOsoba">Broj Osoba:</label>
+      <input id="brojOsoba" type="number" [(ngModel)]="updatedPrijava.brojOsoba" name="brojOsoba" required />
+  
+      <button type="submit">Potvrdi Izmenu</button>
+    </form>
+  </div>
+  
+  <div *ngIf="showForm === 'cancel'">
+    <form (ngSubmit)="cancelPrijava()">
+      <label for="emailCancel">Email:</label>
+      <input id="emailCancel" [(ngModel)]="email" name="emailCancel" required />
+  
+      <label for="tokenCancel">Token:</label>
+      <input id="tokenCancel" [(ngModel)]="token" name="tokenCancel" required />
+  
+      <button type="submit">Potvrdi Otkazivanje</button>
+    </form>
+  </div>

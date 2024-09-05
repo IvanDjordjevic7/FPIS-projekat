@@ -1,0 +1,35 @@
+.home-container {
+    text-align: center;
+    position: relative;
+    height: 100vh;
+  }
+  
+  
+  .title {
+    font-size: 3rem;
+    color: rgb(40, 2, 2);
+  }
+  
+  .btn {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: aqua;
+  }
+
+  .izlozbe-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .izlozba-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    width: 45%;
+  }
+
+  .izlozba-card > ul {
+    list-style: none;
+  }
+  
